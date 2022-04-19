@@ -1,0 +1,1315 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag (contains Google-Analytics、Baidu-Tongji)-->
+<head>
+  <!-- Google Analytics -->
+  
+
+  <!-- Baidu Tongji -->
+  
+
+  <!-- Baidu Push -->
+  
+    <script>
+      (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+      })();
+    </script>
+  
+
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+
+  <meta name="google-site-verification" content="lxDfCplOZbIzjhG34NuQBgu2gdyRlAtMB4utP5AgEBc"/>
+  <meta name="baidu-site-verification" content="PpzM9WxOJU"/>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="description" content="ro0t的安全之路"/>
+  <meta name="keyword" content="ro0t 网络安全"/>
+  <link rel="shortcut icon" href="/img/冥王.png"/>
+
+  <!-- Place this tag in your head or just before your close body tag. -->
+  <script async="async" defer="defer" src="https://buttons.github.io/buttons.js"></script>
+
+  
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/beantech.min.css"/>
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css"/>
+    <link rel="stylesheet" href="/css/widget.css"/>
+    <link rel="stylesheet" href="/css/rocket.css"/>
+    <link rel="stylesheet" href="/css/signature.css"/>
+    <link rel="stylesheet" href="/css/catalog.css"/>
+    <link rel="stylesheet" href="/css/livemylife.css"/>
+
+    
+      <!-- wave start -->
+      <link rel="stylesheet" href="/css/wave.css"/>
+      <!-- wave end -->
+    
+
+    
+      <!-- top start (article top hot config) -->
+      <link rel="stylesheet" href="/css/top.css"/>
+      <!-- top end -->
+    
+
+    
+      <!-- ThemeColor start -->
+      <link rel="stylesheet" href="/css/scroll.css"/>
+      <!-- ThemeColor end -->
+    
+
+    
+      <!-- viewer start (Picture preview) -->
+      <link rel="stylesheet" href="/css/viewer.min.css"/>
+      <!-- viewer end -->
+    
+
+    
+      <!-- Search start -->
+      <link rel="stylesheet" href="/css/search.css"/>
+      <!-- Search end -->
+    
+
+    
+      <!-- ThemeColor start -->
+      <link rel="stylesheet" href="/css/themecolor.css"/>
+      <!-- ThemeColor end -->
+    
+
+    
+
+    
+      <!-- gitalk start -->
+      <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css"> -->
+      <link rel="stylesheet" href="/css/gitalk.css"/>
+      <!-- gitalk end -->
+    
+  
+
+  <!-- Custom Fonts -->
+  <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+  <!-- Hux change font-awesome CDN to qiniu -->
+  <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" type="text/css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!-- Hux Delete, sad but pending in China <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'> <link
+  href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/ css'> -->
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]> <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script> <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script> <![endif]-->
+
+  <!-- ga & ba script hoook -->
+  <link rel="canonical" href="https://ro0t.top/cn/逻辑漏洞/">
+  <title>
+    
+      逻辑漏洞 - ro0t
+    
+  </title>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<!-- hack iOS CSS :active style -->
+
+	<body ontouchstart="" class="body--light body--light">
+
+
+		<!-- ThemeColor -->
+		
+		<!-- ThemeColor -->
+<style type="text/css">
+  .body--light {
+    --light-mode: none;
+    --dark-mode: block;
+  }
+  .body--dark {
+    --light-mode: block;
+    --dark-mode: none;
+  }
+  i.mdui-icon.material-icons.light-mode {
+    display: var(--light-mode);
+  }
+  i.mdui-icon.material-icons.dark-mode {
+    display: var(--dark-mode);
+  }
+</style>
+<div class="toggle" onclick="document.body.classList.toggle('body--dark')">
+  <i class="mdui-icon material-icons light-mode"></i>
+  <i class="mdui-icon material-icons dark-mode"></i>
+</div>
+<script>
+  //getCookieValue
+  function getCookieValue(a) {
+    var b = document.cookie.match('(^|[^;]+)\\s*' + a + '\\s*=\\s*([^;]+)');
+    return b
+      ? b.pop()
+      : '';
+  }
+  let themeMode = 'light';
+  if (getCookieValue('sb-color-mode') && (getCookieValue('sb-color-mode') !== themeMode)) {
+    let dbody = document.body.classList;
+    themeMode === 'dark' ? dbody.remove('body--dark') : dbody.add('body--dark');
+  }
+
+  //setCookieValue
+  var toggleBtn = document.querySelector(".toggle");
+  toggleBtn.addEventListener("click", function () {
+    var e = document.body.classList.contains("body--dark");
+    var cookieString = e
+      ? "dark"
+      : "light";
+    var exp = new Date();
+    exp.setTime(exp.getTime() + 3 * 24 * 60 * 60 * 1000); //3天过期
+    document.cookie = "sb-color-mode=" + cookieString + ";expires=" + exp.toGMTString() + ";path=/";
+  });
+</script>
+
+		
+
+		<!-- Gitter -->
+		
+
+		<!-- Navigation (contains search)-->
+		<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header page-scroll">
+      <button type="button" class="navbar-toggle">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">ro0t&#39;s Blog</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <!-- Known Issue, found by Hux: <nav>'s height woule be hold on by its content. so, when navbar scale out, the <nav> will cover tags. also mask any touch event of tags, unfortunately. -->
+    <div id="huxblog_navbar">
+      <div class="navbar-collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <a href="/">首页</a>
+          </li>
+
+          
+          
+          
+          
+          <li>
+            <a href="/about/">
+              
+              关于
+              
+              
+            </a>
+          </li>
+          
+          
+          
+          <li>
+            <a href="/archive/">
+              
+              归档
+              
+              
+            </a>
+          </li>
+          
+          
+          
+          <li>
+            <a href="/categories/">
+              
+              分类
+              
+              
+            </a>
+          </li>
+          
+          
+          
+          <li>
+            <a href="/tags/">
+              
+              标签
+              
+              
+            </a>
+          </li>
+          
+          
+
+          
+          <li>
+            <a class="popup-trigger">
+              <span class="search-icon"></span>搜索</a>
+          </li>
+          
+
+          <!-- LangSelect -->
+          
+          
+          
+          
+          
+        </ul>
+      </div>
+    </div>
+    <!-- /.navbar-collapse -->
+  </div>
+  <!-- /.container -->
+</nav>
+<!-- progress -->
+<div id="progress">
+  <div class="line" style="width: 0%;"></div>
+</div>
+
+<script>
+  // Drop Bootstarp low-performance Navbar Use customize navbar with high-quality material design animation in high-perf jank-free CSS3 implementation
+  var $body = document.body;
+  var $toggle = document.querySelector('.navbar-toggle');
+  var $navbar = document.querySelector('#huxblog_navbar');
+  var $collapse = document.querySelector('.navbar-collapse');
+
+  $toggle.addEventListener('click', handleMagic)
+
+  function handleMagic(e) {
+    if ($navbar.className.indexOf('in') > 0) {
+      // CLOSE
+      $navbar.className = " ";
+      // wait until animation end.
+      setTimeout(function() {
+        // prevent frequently toggle
+        if ($navbar.className.indexOf('in') < 0) {
+          $collapse.style.height = "0px"
+        }
+      }, 400)
+    } else {
+      // OPEN
+      $collapse.style.height = "auto"
+      $navbar.className += " in";
+    }
+  }
+</script>
+
+
+		<!-- Post Header (contains intro-header、signature、wordcount、busuanzi、waveoverlay) -->
+		<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+
+  <style type="text/css">
+    .body--light {
+      /* intro-header */
+      --intro-header-background-image-url-home: url('/img/index_bg.jpg');
+      --intro-header-background-image-url-post: url('/img/header_img/logic.jpeg');
+      --intro-header-background-image-url-page: url('//img/header_img/logic.jpeg');
+    }
+    .body--dark {
+      --intro-header-background-image-url-home: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/img/index_bg.jpg');
+      --intro-header-background-image-url-post: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/img/header_img/logic.jpeg');
+      --intro-header-background-image-url-page: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('//img/header_img/logic.jpeg');
+    }
+
+    header.intro-header {
+       /*post*/
+        background-image: var(--intro-header-background-image-url-post);
+        /* background-image: url('/img/header_img/logic.jpeg'); */
+      
+    }
+
+    
+      #signature {/*signature*/
+        background-image: url('/img/signature/ro0t.png');
+      }
+    
+  </style>
+
+
+
+
+
+<header class="intro-header">
+  <!-- Signature -->
+  <div id="signature">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+          
+          <div class="post-heading">
+            <div class="tags">
+              
+              <a class="tag" href="/tags/#Web安全" title="Web安全">Web安全</a>
+              
+            </div>
+            <h1>逻辑漏洞</h1>
+            <h2 class="subheading"></h2>
+            <span class="meta">
+              作者 ro0t 于
+              2021-06-01 发布
+            </span>
+
+
+            
+            <!-- WordCount start -->
+            <div class="blank_box"></div>
+            <span class="meta">
+              预计阅读所需时间 <span class="post-count">14</span> 分钟
+            </span>
+            <div class="blank_box"></div>
+            <span class="meta">
+              约 <span class="post-count">4.4k</span> 字
+            </span>
+            <div class="blank_box"></div>
+            <!-- WordCount end -->
+            
+            
+
+
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  <!-- waveoverlay start -->
+  <div class="preview-overlay">
+    <svg class="preview-waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+      <defs>
+        <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"></path>
+      </defs>
+      <g class="preview-parallax">
+        <use xlink:href="#gentle-wave" x="48" y="0" fill=var(--gentle-wave1)></use>
+        <use xlink:href="#gentle-wave" x="48" y="3" fill=var(--gentle-wave2)></use>
+        <use xlink:href="#gentle-wave" x="48" y="5" fill=var(--gentle-wave3)></use>
+        <use xlink:href="#gentle-wave" x="48" y="7" fill=var(--gentle-wave)></use>
+      </g>
+    </svg>
+  </div>
+  <!-- waveoverlay end -->
+  
+
+</header>
+
+
+
+		<!-- Main Content (Post contains
+	Pager、
+	tip、
+	socialshare、
+	gitalk、gitment、disqus-comment、
+	Catalog、
+	Sidebar、
+	Featured-Tags、
+	Friends Blog、
+	anchorjs、
+	) -->
+		<!-- Modify by Yu-Hsuan Yen -->
+<!-- Post Content -->
+<article>
+  <div class="container">
+    <div class="row">
+      <!-- Post Container -->
+      <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
+
+        <!-- toc -->
+<ul>
+<li><a href="#%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E">逻辑漏洞</a>
+<ul>
+<li><a href="#%E6%89%BE%E5%9B%9E%E5%AF%86%E7%A0%81">找回密码</a>
+<ul>
+<li><a href="#%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9B%B4%E6%8E%A5%E5%9B%9E%E6%98%BE-token">客户端直接回显 Token</a></li>
+<li><a href="#token-%E5%8F%AF%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3">Token 可暴力破解</a></li>
+<li><a href="#token-%E5%8F%AF%E9%87%8D%E6%94%BE">Token 可重放</a></li>
+<li><a href="#%E7%AF%A1%E6%94%B9-%E7%94%A8%E6%88%B7%E5%90%8D%E6%88%96%E6%89%BE%E5%9B%9E%E5%9C%B0%E5%9D%80">篡改 用户名或找回地址</a></li>
+<li><a href="#%E8%B7%B3%E8%BF%87-token-%E7%9A%84%E9%AA%8C%E8%AF%81%E6%B5%81%E7%A8%8B">跳过 Token 的验证流程</a></li>
+<li><a href="#session-%E5%A4%8D%E7%94%A8">session 复用</a></li>
+<li><a href="#token-%E5%8F%AF%E9%A2%84%E6%B5%8B">Token 可预测</a></li>
+<li><a href="#%E7%94%A8%E6%88%B7%E9%AA%9A%E6%89%B0">用户骚扰</a></li>
+<li><a href="#%E9%87%8D%E5%A4%8D%E6%B3%A8%E5%86%8C">重复注册</a></li>
+<li><a href="#%E6%80%BB%E7%BB%93">总结</a></li>
+</ul>
+</li>
+<li><a href="#%E9%AA%8C%E8%AF%81%E7%A0%81">验证码</a>
+<ul>
+<li><a href="#%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%94%9F%E6%88%90%E9%AA%8C%E8%AF%81%E7%A0%81">客户端生成验证码</a></li>
+<li><a href="#%E9%AA%8C%E8%AF%81%E7%A0%81%E5%9B%9E%E6%98%BE%E5%9C%A8%E5%93%8D%E5%BA%94%E4%B8%AD">验证码回显在响应中</a></li>
+<li><a href="#%E9%AA%8C%E8%AF%81%E7%A0%81%E5%8F%AF%E4%BB%A5%E4%B8%BA%E7%A9%BA">验证码可以为空</a></li>
+<li><a href="#%E4%B8%87%E8%83%BD%E9%AA%8C%E8%AF%81%E7%A0%81">万能验证码</a></li>
+<li><a href="#%E9%AA%8C%E8%AF%81%E7%A0%81%E5%8F%AF%E5%A4%8D%E7%94%A8">验证码可复用</a></li>
+<li><a href="#%E9%AA%8C%E8%AF%81%E7%A0%81%E5%8F%AF%E8%A2%AB%E8%87%AA%E5%8A%A8%E8%AF%86%E5%88%AB">验证码可被自动识别</a></li>
+<li><a href="#%E9%AA%8C%E8%AF%81%E7%A0%81%E5%8F%AF%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3">验证码可暴力破解</a></li>
+<li><a href="#%E9%AA%8C%E8%AF%81%E7%A0%81%E5%8A%9F%E8%83%BD%E5%BC%80%E5%85%B3%E5%8F%AF%E6%8E%A7">验证码功能开关可控</a></li>
+<li><a href="#ddos">DDoS</a></li>
+<li><a href="#%E9%AA%8C%E8%AF%81%E6%B5%81%E7%A8%8B%E7%9A%84%E9%A1%BA%E5%BA%8F%E6%9C%89%E8%AF%AF">验证流程的顺序有误</a></li>
+</ul>
+</li>
+<li><a href="#%E6%94%AF%E4%BB%98%E6%BC%8F%E6%B4%9E">支付漏洞</a>
+<ul>
+<li><a href="#%E4%BF%AE%E6%94%B9%E6%94%AF%E4%BB%98%E7%9A%84%E4%BB%B7%E6%A0%BC">修改支付的价格</a></li>
+<li><a href="#%E4%BF%AE%E6%94%B9%E6%94%AF%E4%BB%98%E7%9A%84%E7%8A%B6%E6%80%81">修改支付的状态</a></li>
+<li><a href="#%E4%BF%AE%E6%94%B9%E8%B4%AD%E4%B9%B0%E9%87%8F%E4%B8%BA%E8%B4%9F%E6%95%B0">修改购买量为负数</a></li>
+<li><a href="#%E9%87%8D%E6%94%BE%E6%94%BB%E5%87%BB%E9%9D%9E%E5%B9%B6%E5%8F%91">重放攻击【非并发】</a></li>
+<li><a href="#%E5%B9%B6%E5%8F%91%E8%AF%B7%E6%B1%82">并发请求</a></li>
+<li><a href="#%E6%B5%8B%E8%AF%95%E7%8E%AF%E5%A2%83%E6%9C%AA%E4%B8%8B%E7%BA%BF">测试环境未下线</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+<h1><span id="逻辑漏洞">逻辑漏洞</span></h1>
+<h2><span id="找回密码">找回密码</span></h2>
+<p>找回密码相关的安全问题，基本上都是逻辑问题。找回密码的途径一般有两种：</p>
+<ol>
+<li>通过回答密保问题重置密码</li>
+<li>通过绑定的手机/邮箱重置密码</li>
+</ol>
+<p>​        第一种没啥好说的，可以考虑猜解或者社工，有时候数据包里面可能自带了密保答案，比如在 js 里…第二种，现在一般都是往账号绑定的手机发一个 token，或者邮箱发一个重置密码的链接。而发给邮箱的重置密码链接，其实都包含了特殊的参数，本质上也是 token。<strong>所以不管是手机短信还是邮件链接，本文统一称为 token，故本文就以邮箱为例。</strong></p>
+<p>​        而细分的话又有 2 种形式，一种是不需要输入账号绑定的邮箱，点击忘记密码，后台会自己从数据库中获取账户的邮箱，然后在用户点击确认之后，发送一个 token；另一种是要求用户输入此账号绑定的邮箱，然后再发 token。显然，前者的用户体验更好，也避免了用户不但忘记密码同时还忘记手机号/邮箱的尴尬局面。</p>
+<h3><span id="客户端直接回显-token">客户端直接回显 Token</span></h3>
+<p>​        有些程序会将 token 放在响应包中，这个时候只要拦截发送的请求，查看响应就可以获得 token 了。如果是后台自动获取的邮箱，那么就可以重置任意用户的密码。织梦 CMS 就出现过这样的漏洞。</p>
+<p>**修复方法：**避免将 token 回显在响应包中，验证的比对应该放在服务端进行。</p>
+<h3><span id="token-可暴力破解">Token 可暴力破解</span></h3>
+<p>暴力破解可分为几种：</p>
+<ol>
+<li>
+<p>好且快的暴力破解：后端没有对 token 的尝试次数做限制时，则可暴力破解 token。知道 token 格式后，例如是 4 位数字、6 位数字等等，然后爆破就完事了。</p>
+</li>
+<li>
+<p>差但快的暴力破解：后端未对错误次数做限制，只对 token 的有效期做限制，比如 30 分钟，如果是 4 位数字，就很容易爆破出来；对于更加复杂的 token，比如 6 位数字，攻击者可以考虑通过多线程、多进程、分布式等手段加快速度，赶在 token 失效之前尝试完毕（显然，这个速度是有上限的，取决于信道容量、网速、目标服务器的并发量）。</p>
+</li>
+<li>
+<p>差且慢的暴力破解：后端未对错误次数做限制，只对 token 的有效期做限制（比如一天甚至无限），并限制了提交频率，比如一分钟只能提交（验证）5 次。这个限制会有效降低攻击者尝试的速度，但如果 token 的有效期足够长，攻击者还是可以慢慢试出来的，取决于攻击者在目标的预期成本。</p>
+</li>
+</ol>
+<p>**修复方法：**对 token 错误的次数做限制、按照业务需求，给定过期时间，限制提交频率，避免被爆破；必要时可以再加大其复杂度（6 位数字，甚至添加英文字母）。</p>
+<h3><span id="token-可重放">Token 可重放</span></h3>
+<p>这个很好理解，如果 token 验证通过之后依然有效，只要它没被覆盖，攻击者获得之后就可以重置密码。</p>
+<p>**修复方法：**token 一旦验证成功，就要销毁，防止重放攻击。</p>
+<h3><span id="篡改-用户名或找回地址">篡改 用户名或找回地址</span></h3>
+<ol>
+<li>点击忘记密码时，后端生成页面的时候就自动拿到了邮箱，然后放在前端展示，用户点击确定之后，后端收到一个请求，这个请求包含了用户名和前端传来的邮箱。如果后端直接使用这个用户名和邮箱，生成此用户重置密码的 token，并且发送这个邮箱去，那么就可以篡改了：</li>
+<li>前端填受害者的用户名，这个时候前端给后端的邮箱是受害者的邮箱，然后拦截数据包，篡改里面的邮箱为自己的，这样后端会发送重置密码的 token 到自己的邮箱，就可以重置受害者的密码。</li>
+<li>前端填自己的用户名，这个时候前端给后端的邮箱是自己的邮箱，然后拦截数据包，篡改里面的用户名为受害者的，就可以重置受害者的密码。</li>
+<li>流程进行到最后一步，填密码的时候，前端会把用户名发到后端去，后端以这个用户名为准来重置密码，那么只要修改这个用户名就可以重置此用户的密码。</li>
+<li>找回密码凭证发到邮箱中，url 中包含用户名以及 token，这个 token 可以用于修改其他用户的密码。即服务端只校验 token 是否有效，而不校验 token 是否对应特定某个用户，那么只要修改用户名就可以重置任意用户的密码。<br>
+显然，这几种都可以重置任意用户的密码。</li>
+</ol>
+<p><strong>修复方法</strong>：生成 token 的时候，要验证用户名与邮箱是否对应；验证 token 的时候，注意用户名、token 要对应。</p>
+<h3><span id="跳过-token-的验证流程">跳过 Token 的验证流程</span></h3>
+<p>填写 token 之后提交，后端收到 token 验证通过后，服务器返回类似 ok、1、success、true 这种的状态值。我们知道这个只需要拦截响应包就可以欺骗前端进入下一步，一般就可以修改密码了。填写新的密码之后，如果后端没有校验步骤是否进行到这一步，那么就可以跳过 Token 的验证流程，直接重置任意用户的密码。</p>
+<p>**修复方法：**后端在进行找回密码的最后一步：覆盖数据库中的密码 之前，验证一下此账户找回密码的流程是否达到了最后一步（最好就是在整个流程中，每步都验证上一步的操作是否已经完成）；可以缩短流程，把校验 token 和修改密码合并到一个步骤里。</p>
+<h3><span id="session-复用">session 复用</span></h3>
+<p>需要满足 2 个条件：</p>
+<ol>
+<li>在用户进入到找回密码页面的时候，后端没有 set-cookie</li>
+<li>后端在进行找回密码的最后一步的时候，从 session 中取的用户名</li>
+</ol>
+<p>​        攻击的时候，先用自己的账户找回密码，收到邮件的时候，后端的 session 里的用户是我们自己。接下来新开一个标签页，用受害者的用户名进行找回密码，此时用的还是上一步的 session-id，所以等到邮件发出之后，此时后端的 session 里的用户名就变成受害者了，然后打开刚才收到的链接进行重置密码操作就可以重置受害者的密码。可以自行搜索 <code>wooyun-2014-085843</code>，是一个比较经典的案例。</p>
+<p>当然啦，这个也是任意用户密码重置。</p>
+<p>**修复方法：**找回密码功能，如果要依赖 session 完成，那么一定要做好 session-id 的销毁机制，避免 session 里重要的值被覆盖。</p>
+<h3><span id="token-可预测">Token 可预测</span></h3>
+<p>重置密码的 token 应该是极难预测的。但是有些实现的就不安全，例如：</p>
+<ol>
+<li>使用时间戳作为 token</li>
+<li>用户 id 或者时间戳 经过 md5/base64 作为 token</li>
+<li>有个特定的 api 可以生成 token，若未授权，攻击者可以直接调用</li>
+</ol>
+<p>如果后端没有验证找回密码流程，则找到规律后，直接伪造 url 就可以重置任意用户的密码；如果后端验证了找回密码的流程，就按照流程正常走，发完 token 后，猜解一下 token，完成任意用户密码重置。</p>
+<p>**修复方法：**token 尽可能随机，不要有规律可循；token 尝试次数做限制；验证找回密码的流程是否到了最后一步（最好就是在整个流程中，每步都验证上一步的操作是否已经完成）。</p>
+<h3><span id="用户骚扰">用户骚扰</span></h3>
+<p>这里以绑定的手机号为例。</p>
+<p>不断地重复找回密码的过程，让后端不断发送 token。如果后端不验证账户与手机号的话，则可以短信轰炸任意手机号；如果后端在验证了账户与手机号之后，才发送 token 的话，则只能轰炸指定的手机号。</p>
+<p>**修复方法：**限制找回密码的频率；注意，攻击者可以恶意消耗找回密码次数，导致真正的用户无法使用找回密码功能，所以加验证码提高攻击者恶意消耗次数的成本，也是一个非常常见的措施。</p>
+<h3><span id="重复注册">重复注册</span></h3>
+<p>可以注册一个已存在的用户，导致密码被覆盖，但原用户的所有信息（用户的信息，姓名、身份证、手机号等等）却没有改变。</p>
+<p>案例：<code>wooyun-2014-088708</code></p>
+<h3><span id="总结">总结</span></h3>
+<p>找回密码是一个非常常见的功能，但不是那么容易写得完善的，需要注意的地方有很多，逻辑稍有不完善就会出现漏洞。</p>
+<p>上面的几点都好理解，那么最后不妨再思考一个问题：假如有个网站，它的找回密码功能没有对 token 的有效时间加以限制，也就是说派发的 token 是没有过期时间的，但是有错误次数限制，如何看待这样的设计方案？</p>
+<p>首先，过期时间实现起来要比次数限制简单，业务方一般喜欢做简单的；如果过期时间与次数限制只能做一个的话，对于防御爆破来说，肯定是次数限制来得彻底；但是只做次数限制的话，增加了 token 泄露的风险，因为 token 不会过期，在漫长的生命周期里有很大的可能泄露，而且不是所有的 token 都会被使用（用户可能手抖了或者是由攻击者发起的找回密码），如果还有 token 可重放的问题，那风险就更大了。所以认为这样的方案并不完美，但是可以接受。</p>
+<h2><span id="验证码">验证码</span></h2>
+<h3><span id="客户端生成验证码">客户端生成验证码</span></h3>
+<p>验证码由客户端生成，比如用 js，在客户端验证，可以直接伪造数据包绕过；或者发回给服务端校验，修改响应就轻易可以绕过验证码。</p>
+<p><strong>修复方法</strong>：验证码的生成、比对应该放在服务端进行。</p>
+<h3><span id="验证码回显在响应中">验证码回显在响应中</span></h3>
+<p>有些程序会将验证码放在响应中（body、Set-Cookie），这个时候只要拦截发送的请求，查看响应就可以获得验证码了。</p>
+<p><strong>修复方法</strong>：避免将验证码回显在响应包中，验证的比对应该放在服务端进行。</p>
+<h3><span id="验证码可以为空">验证码可以为空</span></h3>
+<p>后端没有考虑到验证码为空的情况，不传验证码可以直接通过验证码的认证。ecshop 曾经出现过此问题。</p>
+<p><strong>修复方法</strong>：后端的逻辑应该是，没有收到验证码，等同于验证码错误。</p>
+<h3><span id="万能验证码">万能验证码</span></h3>
+<p>一般是开发人员测试时所用的测试验证码直接部署在线上，不用调用任何获取验证码请求的接口，直接输入该万能验证码，即可通过验证。</p>
+<p><strong>修复方法</strong>：上线之前去除所有测试、调试逻辑。</p>
+<h3><span id="验证码可复用">验证码可复用</span></h3>
+<p>对于一个 session，验证码可以重复使用，攻击者只需要保证 cookie 没变，这个验证码就基本没有用了。</p>
+<p><strong>修复方法</strong>：一个 session 的验证码，一旦使用过了就应该销毁。</p>
+<h3><span id="验证码可被自动识别">验证码可被自动识别</span></h3>
+<p>最常见的，就是验证码图像过于简单，比如没有任何干扰线/扭曲的验证码。但是本文不打算讲验证码的识别方式，网上有很多资料，橘友们如果感兴趣的话可以看看这一篇：<a target="_blank" rel="noopener" href="https://wooyun.x10sec.org/static/drops/tips-141.html">https://wooyun.x10sec.org/static/drops/tips-141.html</a></p>
+<p>还有一类是，验证码图像复杂，但是存在其他特征可以间接识别。一个经典案例是：<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000021903141%E3%80%82%E8%BF%99%E4%B8%AA%E9%AA%8C%E8%AF%81%E7%A0%81%E5%85%B6%E8%99%BD%E7%84%B6%E4%B8%8D%E5%A5%BD%E7%9B%B4%E6%8E%A5%E8%AF%86%E5%88%AB%EF%BC%8C%E4%BD%86%E6%98%AF%E5%8F%AF%E4%BB%A5%E5%88%A9%E7%94%A8">https://segmentfault.com/a/1190000021903141。这个验证码其虽然不好直接识别，但是可以利用</a> svg path 长度这一特征，将其映射到特定验证码图片的字符上，遇到特定长度的 svg path 就等于见到了特定的字符，那么就可以自动化识别了。拓展一下思路，类似的问题可能是：返回验证码的数据包大小存在特征、验证码字符固定的颜色…</p>
+<p><strong>修复方法</strong>：1. 保证验证码图像本身其复杂度（添加英文字母或者汉字、扭曲字体、加干扰线、加噪点、粘连，有必要可以上行为验证码）；2. 实现的时候注意验证码是否有其他特征可以间接识别出每个字符。</p>
+<h3><span id="验证码可暴力破解">验证码可暴力破解</span></h3>
+<p>验证码提交错误之后，后端没有把对应 session 的验证码重置，导致攻击者可以重复尝试同一个验证码，导致验证码可暴力破解<br>
+验证码所有的可能性应该是很大的，这样可以避免攻击者重复提交一个答案绕过。但如果验证码本质上是在做选择题（通常只有 A、B、C、D 四个选项），那么所有的可能性就只有 4 种。案例：wooyun-2013-025245。</p>
+<p><strong>修复方法</strong>：1. 一个 session 的验证码，一旦错误就应该销毁；2. 提升用户体验的时候，也要时刻注意验证码的空间大小，防止空间缩小导致验证码容易破解。</p>
+<h3><span id="验证码功能开关可控">验证码功能开关可控</span></h3>
+<p>后端有关闭验证码的功能，但这个启用的变量可以由前端传递参数控制。为什么会有这种情况呢？可能是调试功能没有下掉；或者，有些验证码接口是 A 部门统一提供的，然后某个业务方用的某个前端框架是已经直接封装好了验证码功能，但是实际上又不需要使用它（比如内部的某个不重要的系统），就可能要求验证码接口有个关闭验证的参数。</p>
+<p>案例：wooyun-2014-071289、wooyun-2013-026219、wooyun-2012-014563</p>
+<p><strong>修复方法</strong>：没有必要就别设置开关了；一定要设置开关的话，不能由前端控制；非要用前端控制的话。。。参数值加个密吧，但这个控制方式一定只能放在内网的系统上使用。</p>
+<h3><span id="ddos">DDoS</span></h3>
+<p>有些验证码的实现是，前端传参中含有证码图片的大小，后端根据这个参数来生成验证码图片；加上后端没有限制验证码图片的大小，那么攻击者只需要生成超大的图形验证码，就很容易造成内存耗尽，达到拒绝服务的目的。</p>
+<p><strong>修复方法</strong>：验证码生成的一切逻辑应在后端完成；如考虑服务兼容性一定要接受前端传参时，也要对其进行大小限制。</p>
+<h3><span id="验证流程的顺序有误">验证流程的顺序有误</span></h3>
+<p>验证码在验证的时候，顺序/逻辑关系不正确，导致验证码失效。</p>
+<p>如：先校验用户名和密码，然后再验证验证码是否正确，这明显逻辑顺序有误，验证码实际上没起到防护的作用。</p>
+<p><strong>修复方法</strong>：先校验验证码，再继续后面的业务逻辑。</p>
+<h2><span id="支付漏洞">支付漏洞</span></h2>
+<blockquote>
+<p>涉及交易相关的安全漏洞</p>
+</blockquote>
+<h3><span id="修改支付的价格">修改支付的价格</span></h3>
+<p>如：修改支付的参数，直接修改价格</p>
+<h3><span id="修改支付的状态">修改支付的状态</span></h3>
+<p>如：使用1元购买成功的状态，实现100元的购买</p>
+<h3><span id="修改购买量为负数">修改购买量为负数</span></h3>
+<p>造成线上数据污染</p>
+<h3><span id="重放攻击非并发">重放攻击【非并发】</span></h3>
+<p>如：多次发起支付请求， 达到花费1元，购买多次的效果</p>
+<h3><span id="并发请求">并发请求</span></h3>
+<p>同时发起大量相同请求，由于数据库没有加锁导致短时间内同一个请求成功执行多次，造成资产损失。</p>
+<h3><span id="测试环境未下线">测试环境未下线</span></h3>
+<p>通过遍历请求的参数（如活动id等），可发现线上隐藏的 或 测试环境未下线 的充值接口，实现优惠价支付的目的</p>
+
+
+        <hr>
+        <!-- Pager -->
+        <ul class="pager">
+          
+          <li class="previous">
+            <a href="/cn/越权分类，场景/" data-toggle="tooltip" data-placement="top" title="越权分类_场景">&larr; Previous Post</a>
+          </li>
+          
+          
+        </ul>
+
+        
+        <!-- tip start -->
+        <!-- tip -->
+<!-- tip start -->
+<div class="tip">
+  <p>
+    
+      如果您喜欢此博客或发现它对您有用，则欢迎对此发表评论。 也欢迎您共享此博客，以便更多人可以参与。 如果博客中使用的图像侵犯了您的版权，请与作者联系以将其删除。 谢谢 ！
+    
+  </p>
+</div>
+<!-- tip end -->
+
+        <!-- tip end -->
+        
+
+        
+        <!-- Sharing Srtart -->
+        <!-- Social Social Share Post -->
+<!-- Docs:https://github.com/overtrue/share.js -->
+
+<div class="social-share" data-initialized="true" data-disabled="tencent ,douban ,qzone ,linkedin ,facebook ,google ,diandian" data-wechat-qrcode-helper="" align="center">
+  <ul class="list-inline text-center social-share-ul">
+    <li class="social-share-li">
+      <a target="_blank" class="social-share-icon icon-twitter">
+        <i class="fa fa-twitter fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li class="social-share-li">
+      <a class="social-share-icon icon-wechat">
+        <i class="fa fa-weixin fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li class="social-share-li">
+      <a target="_blank" class="social-share-icon icon-weibo">
+        <i class="fa fa-weibo fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li class="social-share-li">
+      <a target="_blank" class="social-share-icon icon-qq">
+        <i class="fa fa-qq fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li class="social-share-li">
+      <a target="_blank" class="social-share-icon" href="mailto:?subject=逻辑漏洞&body=Hi,I found this website and thought you might like it https://ro0t.top/cn/逻辑漏洞/">
+        <i class="fa fa-envelope fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+<!-- css & js -->
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css"> -->
+<script defer="defer" async="true" src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+
+        <!-- Sharing End -->
+        
+        <hr>
+
+        <!-- comments start -->
+        <!-- 1. gitalk comment -->
+
+  <!-- gitalk start -->
+  <!-- Docs:https://github.com/gitalk/gitalk/blob/master/readme-cn.md -->
+
+  <div id="gitalk-container"></div>
+
+  
+    <!-- <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.js"></script> -->
+    <script src="/js/comment/gitalk.js"></script>
+  
+
+  <script>
+    var gitalk = new Gitalk({
+      clientID: '',
+      clientSecret: '',
+      repo: '',
+      owner: '',
+      admin: '',
+      id: 'Tue Jun 01 2021 00:00:00 GMT+0800', // Ensure uniqueness and length less than 50
+      distractionFreeMode: false, // Facebook-like distraction free mode
+      perPage: 10,
+      pagerDirection: 'last',
+      createIssueManually: false,
+      language: 'zh-CN',
+      proxy: 'https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token'
+    });
+    gitalk.render('gitalk-container');
+
+    var gtFolded = () => {
+      setTimeout(function () {
+        let markdownBody = document.getElementsByClassName("markdown-body");
+        let list = Array.from(markdownBody);
+        list.forEach(item => {
+          if (item.clientHeight > 250) {
+            item.classList.add('gt-comment-body-folded');
+            item.style.maxHeight = '250px';
+            item.title = 'Click to Expand';
+            item.onclick = function () {
+              item.classList.remove('gt-comment-body-folded');
+              item.style.maxHeight = '';
+              item.title = '';
+              item.onclick = null;
+            };
+          }
+        })
+      }, 800);
+    }
+  </script>
+
+  <!-- gitalk end -->
+
+
+<!-- 2. gitment comment -->
+
+
+<!-- 3. disqus comment -->
+
+
+        <!-- comments end -->
+        <hr>
+
+      </div>
+
+      <!-- Catalog: Tabe of Content -->
+      <!-- Table of Contents -->
+
+
+
+      <!-- Sidebar Container -->
+      <div class="
+                col-lg-8 col-lg-offset-1
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+        <!-- Featured Tags -->
+        
+        <section>
+          <!-- no hr -->
+          <h5>
+            <a href="/tags/">特色标签</a>
+          </h5>
+          <div class="tags">
+            
+            <a class="tag" href="/tags/#Web安全" title="Web安全">Web安全</a>
+            
+          </div>
+        </section>
+        
+
+        <!-- Friends Blog -->
+        
+        <hr>
+        <h5>链友</h5>
+        <ul class="list-inline">
+
+          
+          <li>
+            <a href="https://www.tr0y.wang/" target="_blank">Tr0y</a>
+          </li>
+          
+          <li>
+            <a href="https://hexo.io/" target="_blank">Hexo</a>
+          </li>
+          
+        </ul>
+        
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+<!-- anchorjs start -->
+<!-- async load function -->
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script type="text/javascript">
+  // async load function
+  function async (u, c) {
+    var d = document,
+      t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) {
+      o.addEventListener('load', function(e) {
+        c(null, e);
+      }, false);
+    }
+    s.parentNode.insertBefore(o, s);
+  };
+</script>
+<script type="text/javascript">
+  //anchor-js, Doc:http://bryanbraun.github.io/anchorjs/
+  async ("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js", function() {
+    anchors.options = {
+      visible: 'hover',
+      placement: 'left',
+      // icon: 'ℬ'
+      icon: '❡'
+    };
+    anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+  });
+</script>
+<style>
+  /* place left on bigger screen */
+  @media all and (min-width: 800px) {
+    .anchorjs-link {
+      position: absolute;
+      left: -0.75em;
+      font-size: 1.1em;
+      margin-top: -0.1em;
+    }
+  }
+</style>
+
+<!-- anchorjs end -->
+
+
+
+		<!-- Footer (contains ThemeColor、viewer) -->
+		<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center">
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+            <li>
+              <a target="_blank" href="http://weibo.com/2752859095">
+                <span class="fa-stack fa-lg">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+          
+
+        </ul>
+        <p class="copyright text-muted">
+          Copyright &copy;
+          ro0t
+          2021
+          <br>
+          <a target="_blank" rel="noopener" href="https://beian.miit.gov.cn">浙ICP备2021021371号</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<a id="rocket" href="#top" class=""></a>
+
+
+  <!-- jQuery -->
+  <script type="text/javascript" src="/js/jquery.min.js"></script>
+  <!-- Bootstrap Core JavaScript -->
+  <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+  <!-- Custom Theme JavaScript -->
+  <script type="text/javascript" src="/js/hux-blog.min.js"></script>
+  <!-- catalog -->
+  <script async="true" type="text/javascript" src="/js/catalog.js"></script>
+  <!-- totop(rocket) -->
+  <script async="true" type="text/javascript" src="/js/totop.js"></script>
+
+  
+
+  
+    <!-- Scroll start -->
+    <script async="async" type="text/javascript" src="/js/scroll.js"></script>
+    <!-- Scroll end -->
+  
+
+  
+    <!-- LangSelect start -->
+    <script type="text/javascript" src="/js/langselect.js"></script>
+    <!-- LangSelect end -->
+  
+
+  
+    <!-- Mouseclick -->
+    <script type="text/javascript" src="/js/mouseclick.js" content='富强,民主,文明,和谐,自由,平等,公正,法治,爱国,敬业,诚信,友善' color='#9933CC,#339933,#66CCCC,#FF99CC,#CCCCFF,#6666CC,#663399,#66CC99,#FF0033,#9933CC,#339933,#66CCCC'></script>
+  
+
+  
+    <!-- ribbon -->
+    <script type="text/javascript" src="/js/ribbonDynamic.js"></script>
+  
+
+  
+
+
+
+
+
+
+  <!-- viewer start -->
+  <!-- viewer start (Picture preview) -->
+  
+    <script async="async" type="text/javascript" src="/js/viewer/viewer.min.js"></script>
+    <script async="async" type="text/javascript" src="/js/viewer/pic-viewer.js"></script>
+  
+
+  <!-- viewer end -->
+
+
+<script>
+  // async load function
+  function async (u, c) {
+    var d = document,
+      t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) {
+      o.addEventListener('load', function (e) {
+        c(null, e);
+      }, false);
+    }
+    s.parentNode.insertBefore(o, s);
+  }
+
+  // fastClick.js
+  async ("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function () {
+    var $nav = document.querySelector("nav");
+    if ($nav)
+      FastClick.attach($nav);
+    }
+  )
+</script>
+
+<!-- Because of the native support for backtick-style fenced code blocks right within the Markdown is landed in Github Pages, From V1.6, There is no need for Highlight.js, so Huxblog drops it officially. -
+https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0 - https://help.github.com/articles/creating-and-highlighting-code-blocks/ -->
+<!-- <script> async ("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function () { hljs.initHighlightingOnLoad(); }) </script> <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet"> -->
+
+<!-- jquery.tagcloud.js -->
+<!-- <script> // only load tagcloud.js in tag.html if ($('#tag_cloud').length !== 0) { async ("https://ro0t.top/js/jquery.tagcloud.js", function () { $.fn.tagcloud.defaults = { // size: { start: 1, end: 1, unit: 'em' }, color: {
+start: '#bbbbee', end: '#0085a1' } }; $('#tag_cloud a').tagcloud(); }) } </script> -->
+
+
+		<!-- Search -->
+		
+		<div class="popup search-popup local-search-popup">
+  <span class="popup-btn-close">
+    ESC
+  </span>
+  <div class="container">
+    <div class="row">
+      <!-- <div class="col-md-9 col-md-offset-1"> -->
+      <div class="col-lg-9 col-lg-offset-1 col-md-10 col-md-offset-1 local-search-content">
+
+        <div class="local-search-header clearfix">
+
+          <div class="local-search-input-wrapper">
+            <span class="search-icon">
+              <i class="fa fa-search fa-lg" style="margin: 25px 10px 25px 20px;"></i>
+            </span>
+            <input autocomplete="off" placeholder="搜索..." type="text" id="local-search-input">
+          </div>
+        </div>
+        <div id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  
+    <script src="/js/ziploader.js"></script>
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.json";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    // monitor main search box;
+    var onPopupClose = function (e) {
+      $('.popup').fadeOut(300);
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $('.popup').fadeIn(300);
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+    // get search zip version
+    $.get('/searchVersion.json?t=' + (+new Date()), function (res) {
+      if (localStorage.getItem('searchVersion') !== res) {
+        localStorage.setItem('searchVersion', res);
+        initSearchJson();
+      }
+    });
+
+    function initSearchJson() {
+      initLoad(['/search.flv'], {
+        loadOptions: {
+          success: function (obj) {
+            localStorage.setItem('searchJson', obj['search.json'])
+          },
+          error: function (e) {
+            return console.log(e)
+          }
+        },
+        returnOptions: {
+          'json': TYPE_TEXT
+        },
+        mimeOptions: {
+          'json': 'application/json'
+        }
+      })
+    }
+    // search function;
+    var searchFunc = function (search_id, content_id) {
+      'use strict';
+      isfetched = true;
+      var datas = JSON.parse(localStorage.getItem('searchJson'));
+      // console.log(search_id)
+      var input = document.getElementById(search_id);
+      var resultContent = document.getElementById(content_id);
+      var inputEventFunction = function () {
+        var searchText = input.value.trim().toLowerCase();
+        var keywords = searchText.split(/[\s\-]+/);
+        if (keywords.length > 1) {
+          keywords.push(searchText);
+        }
+        var resultItems = [];
+        if (searchText.length > 0) {
+          // perform local searching
+          datas.forEach(function (data) {
+            var isMatch = false;
+            var hitCount = 0;
+            var searchTextCount = 0;
+            var title = data.title
+              ? data.title.trim()
+              : '';
+            var titleInLowerCase = title.toLowerCase();
+            var content = data.content
+              ? data.content.trim().replace(/<[^>]+>/g, "")
+              : '';
+            var contentInLowerCase = content.toLowerCase();
+            var articleUrl = decodeURIComponent(data.url);
+
+            var date = data.date;
+            var dateTime = date.replace(/T/, " ").replace(/.000Z/, "");
+            var imgUrl = data.header_img;
+            
+
+
+            var indexOfTitle = [];
+            var indexOfContent = [];
+            // only match articles with not empty titles
+            keywords.forEach(function (keyword) {
+              function getIndexByWord(word, text, caseSensitive) {
+                var wordLen = word.length;
+                if (wordLen === 0) {
+                  return [];
+                }
+                var startPosition = 0,
+                  position = [],
+                  index = [];
+                if (!caseSensitive) {
+                  text = text.toLowerCase();
+                  word = word.toLowerCase();
+                }
+                while ((position = text.indexOf(word, startPosition)) > -1) {
+                  index.push({position: position, word: word});
+                  startPosition = position + wordLen;
+                }
+                return index;
+              }
+              indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+              indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+            });
+            if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+              isMatch = true;
+              hitCount = indexOfTitle.length + indexOfContent.length;
+            }
+            // show search results
+            if (isMatch) {
+              // sort index by position of keyword
+              [indexOfTitle, indexOfContent].forEach(function (index) {
+                index.sort(function (itemLeft, itemRight) {
+                  if (itemRight.position !== itemLeft.position) {
+                    return itemRight.position - itemLeft.position;
+                  } else {
+                    return itemLeft.word.length - itemRight.word.length;
+                  }
+                });
+              });
+              // merge hits into slices
+              function mergeIntoSlice(text, start, end, index) {
+                var item = index[index.length - 1];
+                var position = item.position;
+                var word = item.word;
+                var hits = [];
+                var searchTextCountInSlice = 0;
+                while (position + word.length <= end && index.length != 0) {
+                  if (word === searchText) {
+                    searchTextCountInSlice++;
+                  }
+                  hits.push({position: position, length: word.length});
+                  var wordEnd = position + word.length;
+                  // move to next position of hit
+                  index.pop();
+                  while (index.length != 0) {
+                    item = index[index.length - 1];
+                    position = item.position;
+                    word = item.word;
+                    if (wordEnd > position) {
+                      index.pop();
+                    } else {
+                      break;
+                    }
+                  }
+                }
+                searchTextCount += searchTextCountInSlice;
+                return {hits: hits, start: start, end: end, searchTextCount: searchTextCountInSlice};
+              }
+              var slicesOfTitle = [];
+              if (indexOfTitle.length != 0) {
+                slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+              }
+              var slicesOfContent = [];
+              while (indexOfContent.length != 0) {
+                var item = indexOfContent[indexOfContent.length - 1];
+                var position = item.position;
+                var word = item.word;
+                // cut out 100 characters
+                var start = position - 20;
+                var end = position + 80;
+                if (start < 0) {
+                  start = 0;
+                }
+                if (end < position + word.length) {
+                  end = position + word.length;
+                }
+                if (end > content.length) {
+                  end = content.length;
+                }
+                slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+              }
+              // sort slices in content by search text's count and hits' count
+              slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                  return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                  return sliceRight.hits.length - sliceLeft.hits.length;
+                } else {
+                  return sliceLeft.start - sliceRight.start;
+                }
+              });
+              // select top N slices in content
+              var upperBound = parseInt('1');
+              if (upperBound >= 0) {
+                slicesOfContent = slicesOfContent.slice(0, upperBound);
+              }
+              // highlight title and content
+              function highlightKeyword(text, slice) {
+                var result = '';
+                var prevEnd = slice.start;
+                slice.hits.forEach(function (hit) {
+                  result += text.substring(prevEnd, hit.position);
+                  var end = hit.position + hit.length;
+                  result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                  prevEnd = end;
+                });
+                result += text.substring(prevEnd, slice.end);
+                return result;
+              }
+              var resultItem = '';
+
+              // if (slicesOfTitle.length != 0) {   resultItem += "<li><a target='_blank' href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>"; } else {   resultItem += "<li><a target='_blank' href='" +
+              // articleUrl + "' class='search-result-title'>" + title + "</a>"; } slicesOfContent.forEach(function (slice) {   resultItem += "<a target='_blank' href='" + articleUrl + "'><p class=\"search-result\">" + highlightKeyword(content, slice) +
+              // "...</p></a>"; }); resultItem += "</li>";
+
+              if (slicesOfTitle.length != 0) {
+                resultItem += "<a target='_blank' href='" + articleUrl + "' class='search-result'><div class='search-result-left'><div class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</div><time class='search-result-date'>" + dateTime + "</time>";
+              } else {
+                resultItem += "<a target='_blank' href='" + articleUrl + "' class='search-result'><div class='search-result-left'><div class='search-result-title'>" + title + "</div><time class='search-result-date'>" + dateTime + "</time>";
+              }
+              slicesOfContent.forEach(function (slice) {
+                resultItem += "<p class=\"search-result-content\">" + highlightKeyword(content, slice) + "...</p>";
+              });
+              resultItem += "</div><div class='search-result-right'><img class='media-image' src='" + imgUrl + "' width='64px' height='48px'></img></div></a>";
+
+              resultItems.push({item: resultItem, searchTextCount: searchTextCount, hitCount: hitCount, id: resultItems.length});
+            }
+          })
+        };
+
+        if (keywords.length === 1 && keywords[0] === "") {
+          resultContent.innerHTML = '<div id="no-result"></div>'
+        } else if (resultItems.length === 0) {
+          resultContent.innerHTML = '<div id="no-result"></div>'
+        } else {
+          resultItems.sort(function (resultLeft, resultRight) {
+            if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+              return resultRight.searchTextCount - resultLeft.searchTextCount;
+            } else if (resultLeft.hitCount !== resultRight.hitCount) {
+              return resultRight.hitCount - resultLeft.hitCount;
+            } else {
+              return resultRight.id - resultLeft.id;
+            }
+          });
+          var searchResultList = '<div class=\"search-result-list\">';
+          resultItems.forEach(function (result) {
+            searchResultList += result.item;
+          })
+          searchResultList += "</div>";
+          resultContent.innerHTML = searchResultList;
+        }
+      }
+      if ('auto' === 'auto') {
+        input.addEventListener('input', inputEventFunction);
+      } else {
+        $('.search-icon').click(inputEventFunction);
+        input.addEventListener('keypress', function (event) {
+          if (event.keyCode === 13) {
+            inputEventFunction();
+          }
+        });
+      }
+      // remove loading animation
+      $('body').css('overflow', '');
+      proceedsearch();
+    }
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function (e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc('local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function (e) {
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 && $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+
+    document.addEventListener('mouseup', (e) => {
+      var _con = document.querySelector(".local-search-content");
+      if (_con) {
+        if (!_con.contains(e.target)) {
+          onPopupClose();
+        }
+      }
+    });
+  </script>
+
+
+		
+	<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

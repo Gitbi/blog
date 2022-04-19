@@ -1,0 +1,1472 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag (contains Google-Analytics、Baidu-Tongji)-->
+<head>
+  <!-- Google Analytics -->
+  
+
+  <!-- Baidu Tongji -->
+  
+
+  <!-- Baidu Push -->
+  
+    <script>
+      (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+      })();
+    </script>
+  
+
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+
+  <meta name="google-site-verification" content="lxDfCplOZbIzjhG34NuQBgu2gdyRlAtMB4utP5AgEBc"/>
+  <meta name="baidu-site-verification" content="PpzM9WxOJU"/>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="description" content="ro0t的安全之路"/>
+  <meta name="keyword" content="ro0t 网络安全"/>
+  <link rel="shortcut icon" href="/img/冥王.png"/>
+
+  <!-- Place this tag in your head or just before your close body tag. -->
+  <script async="async" defer="defer" src="https://buttons.github.io/buttons.js"></script>
+
+  
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/beantech.min.css"/>
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css"/>
+    <link rel="stylesheet" href="/css/widget.css"/>
+    <link rel="stylesheet" href="/css/rocket.css"/>
+    <link rel="stylesheet" href="/css/signature.css"/>
+    <link rel="stylesheet" href="/css/catalog.css"/>
+    <link rel="stylesheet" href="/css/livemylife.css"/>
+
+    
+      <!-- wave start -->
+      <link rel="stylesheet" href="/css/wave.css"/>
+      <!-- wave end -->
+    
+
+    
+      <!-- top start (article top hot config) -->
+      <link rel="stylesheet" href="/css/top.css"/>
+      <!-- top end -->
+    
+
+    
+      <!-- ThemeColor start -->
+      <link rel="stylesheet" href="/css/scroll.css"/>
+      <!-- ThemeColor end -->
+    
+
+    
+      <!-- viewer start (Picture preview) -->
+      <link rel="stylesheet" href="/css/viewer.min.css"/>
+      <!-- viewer end -->
+    
+
+    
+      <!-- Search start -->
+      <link rel="stylesheet" href="/css/search.css"/>
+      <!-- Search end -->
+    
+
+    
+      <!-- ThemeColor start -->
+      <link rel="stylesheet" href="/css/themecolor.css"/>
+      <!-- ThemeColor end -->
+    
+
+    
+
+    
+      <!-- gitalk start -->
+      <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css"> -->
+      <link rel="stylesheet" href="/css/gitalk.css"/>
+      <!-- gitalk end -->
+    
+  
+
+  <!-- Custom Fonts -->
+  <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+  <!-- Hux change font-awesome CDN to qiniu -->
+  <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" type="text/css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!-- Hux Delete, sad but pending in China <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'> <link
+  href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/ css'> -->
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]> <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script> <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script> <![endif]-->
+
+  <!-- ga & ba script hoook -->
+  <link rel="canonical" href="https://ro0t.top/cn/owasp_top_10/">
+  <title>
+    
+      OWASP TOP10 - ro0t
+    
+  </title>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<!-- hack iOS CSS :active style -->
+
+	<body ontouchstart="" class="body--light body--light">
+
+
+		<!-- ThemeColor -->
+		
+		<!-- ThemeColor -->
+<style type="text/css">
+  .body--light {
+    --light-mode: none;
+    --dark-mode: block;
+  }
+  .body--dark {
+    --light-mode: block;
+    --dark-mode: none;
+  }
+  i.mdui-icon.material-icons.light-mode {
+    display: var(--light-mode);
+  }
+  i.mdui-icon.material-icons.dark-mode {
+    display: var(--dark-mode);
+  }
+</style>
+<div class="toggle" onclick="document.body.classList.toggle('body--dark')">
+  <i class="mdui-icon material-icons light-mode"></i>
+  <i class="mdui-icon material-icons dark-mode"></i>
+</div>
+<script>
+  //getCookieValue
+  function getCookieValue(a) {
+    var b = document.cookie.match('(^|[^;]+)\\s*' + a + '\\s*=\\s*([^;]+)');
+    return b
+      ? b.pop()
+      : '';
+  }
+  let themeMode = 'light';
+  if (getCookieValue('sb-color-mode') && (getCookieValue('sb-color-mode') !== themeMode)) {
+    let dbody = document.body.classList;
+    themeMode === 'dark' ? dbody.remove('body--dark') : dbody.add('body--dark');
+  }
+
+  //setCookieValue
+  var toggleBtn = document.querySelector(".toggle");
+  toggleBtn.addEventListener("click", function () {
+    var e = document.body.classList.contains("body--dark");
+    var cookieString = e
+      ? "dark"
+      : "light";
+    var exp = new Date();
+    exp.setTime(exp.getTime() + 3 * 24 * 60 * 60 * 1000); //3天过期
+    document.cookie = "sb-color-mode=" + cookieString + ";expires=" + exp.toGMTString() + ";path=/";
+  });
+</script>
+
+		
+
+		<!-- Gitter -->
+		
+
+		<!-- Navigation (contains search)-->
+		<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header page-scroll">
+      <button type="button" class="navbar-toggle">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">ro0t&#39;s Blog</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <!-- Known Issue, found by Hux: <nav>'s height woule be hold on by its content. so, when navbar scale out, the <nav> will cover tags. also mask any touch event of tags, unfortunately. -->
+    <div id="huxblog_navbar">
+      <div class="navbar-collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <a href="/">首页</a>
+          </li>
+
+          
+          
+          
+          
+          <li>
+            <a href="/about/">
+              
+              关于
+              
+              
+            </a>
+          </li>
+          
+          
+          
+          <li>
+            <a href="/archive/">
+              
+              归档
+              
+              
+            </a>
+          </li>
+          
+          
+          
+          <li>
+            <a href="/categories/">
+              
+              分类
+              
+              
+            </a>
+          </li>
+          
+          
+          
+          <li>
+            <a href="/tags/">
+              
+              标签
+              
+              
+            </a>
+          </li>
+          
+          
+
+          
+          <li>
+            <a class="popup-trigger">
+              <span class="search-icon"></span>搜索</a>
+          </li>
+          
+
+          <!-- LangSelect -->
+          
+          
+          
+          
+          
+        </ul>
+      </div>
+    </div>
+    <!-- /.navbar-collapse -->
+  </div>
+  <!-- /.container -->
+</nav>
+<!-- progress -->
+<div id="progress">
+  <div class="line" style="width: 0%;"></div>
+</div>
+
+<script>
+  // Drop Bootstarp low-performance Navbar Use customize navbar with high-quality material design animation in high-perf jank-free CSS3 implementation
+  var $body = document.body;
+  var $toggle = document.querySelector('.navbar-toggle');
+  var $navbar = document.querySelector('#huxblog_navbar');
+  var $collapse = document.querySelector('.navbar-collapse');
+
+  $toggle.addEventListener('click', handleMagic)
+
+  function handleMagic(e) {
+    if ($navbar.className.indexOf('in') > 0) {
+      // CLOSE
+      $navbar.className = " ";
+      // wait until animation end.
+      setTimeout(function() {
+        // prevent frequently toggle
+        if ($navbar.className.indexOf('in') < 0) {
+          $collapse.style.height = "0px"
+        }
+      }, 400)
+    } else {
+      // OPEN
+      $collapse.style.height = "auto"
+      $navbar.className += " in";
+    }
+  }
+</script>
+
+
+		<!-- Post Header (contains intro-header、signature、wordcount、busuanzi、waveoverlay) -->
+		<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+
+  <style type="text/css">
+    .body--light {
+      /* intro-header */
+      --intro-header-background-image-url-home: url('/img/index_bg.jpg');
+      --intro-header-background-image-url-post: url('/img/header_img/owasp.jpg');
+      --intro-header-background-image-url-page: url('//img/header_img/owasp.jpg');
+    }
+    .body--dark {
+      --intro-header-background-image-url-home: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/img/index_bg.jpg');
+      --intro-header-background-image-url-post: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/img/header_img/owasp.jpg');
+      --intro-header-background-image-url-page: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('//img/header_img/owasp.jpg');
+    }
+
+    header.intro-header {
+       /*post*/
+        background-image: var(--intro-header-background-image-url-post);
+        /* background-image: url('/img/header_img/owasp.jpg'); */
+      
+    }
+
+    
+      #signature {/*signature*/
+        background-image: url('/img/signature/ro0t.png');
+      }
+    
+  </style>
+
+
+
+
+
+<header class="intro-header">
+  <!-- Signature -->
+  <div id="signature">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+          
+          <div class="post-heading">
+            <div class="tags">
+              
+              <a class="tag" href="/tags/#Web安全" title="Web安全">Web安全</a>
+              
+            </div>
+            <h1>OWASP TOP10</h1>
+            <h2 class="subheading"></h2>
+            <span class="meta">
+              作者 ro0t 于
+              2021-06-01 发布
+            </span>
+
+
+            
+            <!-- WordCount start -->
+            <div class="blank_box"></div>
+            <span class="meta">
+              预计阅读所需时间 <span class="post-count">12</span> 分钟
+            </span>
+            <div class="blank_box"></div>
+            <span class="meta">
+              约 <span class="post-count">3.2k</span> 字
+            </span>
+            <div class="blank_box"></div>
+            <!-- WordCount end -->
+            
+            
+
+
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  <!-- waveoverlay start -->
+  <div class="preview-overlay">
+    <svg class="preview-waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+      <defs>
+        <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"></path>
+      </defs>
+      <g class="preview-parallax">
+        <use xlink:href="#gentle-wave" x="48" y="0" fill=var(--gentle-wave1)></use>
+        <use xlink:href="#gentle-wave" x="48" y="3" fill=var(--gentle-wave2)></use>
+        <use xlink:href="#gentle-wave" x="48" y="5" fill=var(--gentle-wave3)></use>
+        <use xlink:href="#gentle-wave" x="48" y="7" fill=var(--gentle-wave)></use>
+      </g>
+    </svg>
+  </div>
+  <!-- waveoverlay end -->
+  
+
+</header>
+
+
+
+		<!-- Main Content (Post contains
+	Pager、
+	tip、
+	socialshare、
+	gitalk、gitment、disqus-comment、
+	Catalog、
+	Sidebar、
+	Featured-Tags、
+	Friends Blog、
+	anchorjs、
+	) -->
+		<!-- Modify by Yu-Hsuan Yen -->
+<!-- Post Content -->
+<article>
+  <div class="container">
+    <div class="row">
+      <!-- Post Container -->
+      <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
+
+        <!-- toc -->
+<ul>
+<li><a href="#owasp-top10">OWASP TOP10</a>
+<ul>
+<li><a href="#sql%E6%B3%A8%E5%85%A5">SQL注入</a></li>
+<li><a href="#csrf">CSRF</a>
+<ul>
+<li><a href="#%E5%88%A9%E7%94%A8%E5%8E%9F%E7%90%86">利用原理</a></li>
+<li><a href="#%E9%98%B2%E5%BE%A1%E6%96%B9%E5%BC%8F">防御方式：</a></li>
+<li><a href="#%E6%8B%93%E5%B1%95">拓展：</a>
+<ul>
+<li><a href="#token-%E6%80%8E%E4%B9%88%E8%AE%BE%E8%AE%A1">token 怎么设计？</a></li>
+<li><a href="#referer-%E6%98%AF%E4%B8%AA%E4%BB%80%E4%B9%88%E4%B8%9C%E8%A5%BF">Referer 是个什么东西？</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#xss">XSS</a></li>
+<li><a href="#ssrf">SSRF</a>
+<ul>
+<li><a href="#%E5%AE%9A%E4%B9%89">定义</a></li>
+<li><a href="#%E5%88%86%E7%B1%BB">分类</a></li>
+<li><a href="#%E5%88%A9%E7%94%A8%E6%96%B9%E5%BC%8F">利用方式</a>
+<ul>
+<li><a href="#%E4%BC%AA%E5%8D%8F%E8%AE%AE-gopher">伪协议 - gopher://</a></li>
+<li><a href="#%E4%BC%AA%E5%8D%8F%E8%AE%AE-dict">伪协议 - dict://</a></li>
+<li><a href="#%E4%BC%AA%E5%8D%8F%E8%AE%AE-file">伪协议 - file://</a></li>
+<li><a href="#%E4%BC%AA%E5%8D%8F%E8%AE%AE-ldap">伪协议 - ldap://</a></li>
+<li><a href="#%E4%BC%AA%E5%8D%8F%E8%AE%AE-data">伪协议 - data://</a></li>
+<li><a href="#%E4%BC%AA%E5%8D%8F%E8%AE%AE-rmi">伪协议 - rmi://</a></li>
+</ul>
+</li>
+<li><a href="#%E5%B8%B8%E8%A7%81%E7%BB%95%E8%BF%87%E6%8A%80%E5%B7%A7">常见绕过技巧</a></li>
+<li><a href="#%E9%98%B2%E5%BE%A1%E6%96%B9%E5%BC%8F">防御方式</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+<h1><span id="owasp-top10">OWASP TOP10</span></h1>
+<h2><span id="sql注入">SQL注入</span></h2>
+<h2><span id="csrf">CSRF</span></h2>
+<p>CSRF（Cross-Site Request Forgery）跨站请求伪造。旨在冒用用户身份发起请求。</p>
+<h3><span id="利用原理">利用原理</span></h3>
+<ol>
+<li>用户C打开浏览器，访问受信任网站A，输入用户名和密码请求登录网站A；</li>
+<li>在用户信息通过验证后，网站A产生Cookie信息并返回给浏览器，此时用户登录网站A成功，可以正常发送请求到网站A；</li>
+<li>用户未退出网站A之前，在同一浏览器中，打开一个TAB页访问网站B；</li>
+<li>网站B接收到用户请求后，返回一些攻击性代码，并发出一个请求要求访问第三方站点A；</li>
+<li>浏览器在接收到这些攻击性代码后，根据网站B的请求，在用户不知情的情况下携带Cookie信息，向网站A发出请求。网站A并不知道该请求其实是由B发起的，所以会根据用户C的Cookie信息以C的权限处理该请求，导致来自网站B的恶意代码被执行。</li>
+</ol>
+<h3><span id="防御方式">防御方式：</span></h3>
+<ol>
+<li>严格校验referer</li>
+<li>GET转POST，同时添加并校验token</li>
+</ol>
+<h3><span id="拓展">拓展：</span></h3>
+<h4><span id="token-怎么设计">token 怎么设计？</span></h4>
+<ul>
+<li>token不宜过长</li>
+<li>token应与当前用户身份绑定，且验证完应立即失效</li>
+<li>token应动态生成，本身应有固定的生命周期，不能长久有效</li>
+</ul>
+<h4><span id="referer-是个什么东西">Referer 是个什么东西？</span></h4>
+<p>referer字段用来告诉服务器，用户的来源。referer就是一个URL，有可能是内网的URL，也有可能是功能URL，因此，为了隐私考虑，referer有时候需要发送，有时候不需要发送。</p>
+<p><strong>Referer作用</strong>：</p>
+<ul>
+<li>页面统计</li>
+<li>防盗链
+<ul>
+<li>http请求发给服务器后，如果服务器要求必须是某个地址或者某几个地址才能访问，而你发送的referer不符合他的要求，就会拦截或者跳转到他要求的地址，然后再通过这个地址进行访问</li>
+</ul>
+</li>
+</ul>
+<p><strong>Referer发送的场景</strong>：</p>
+<ul>
+<li>用户点击网页上的链接</li>
+<li>用户发送表单</li>
+<li>网页加载静态资源，比如图片、脚本、样式</li>
+</ul>
+<p>浏览器会将当前网址作为<code>Referer</code>字段放在<code>Header</code>头里发送。</p>
+<p><strong>Referer不发送的场景</strong>：</p>
+<ul>
+<li>
+<p>https跳转到http</p>
+</li>
+<li>
+<p>直接在浏览器中输入URL</p>
+</li>
+<li>
+<p>从收藏夹访问</p>
+</li>
+<li>
+<p>单击「主页」或自定义的地址</p>
+</li>
+<li>
+<p>用js来打开，如：<code>window.open</code>、<code>location.href</code>、<code>location.replace</code></p>
+</li>
+<li>
+<p>Referer Policy的值</p>
+<ul>
+<li>
+<p>no-referer</p>
+<p>不发送<code>referer</code>。</p>
+</li>
+<li>
+<p>no-referer-when-downgrade</p>
+<p>从<code>https</code>到<code>http</code>，不发送<code>referer</code>，其他情况则发送，这是浏览器的默认行为。</p>
+</li>
+<li>
+<p>same-origin</p>
+<p>链接到同源（协议、域名、端口）地址时发送，否则不发送。注意：<code>https</code>到<code>http</code>也属于跨域。</p>
+</li>
+<li>
+<p>origin</p>
+<p><code>referer</code>字段一律只发送源信息（协议、域名、端口），不管是否跨域。</p>
+</li>
+<li>
+<p>strict-origin</p>
+<p>如果从 HTTPS 网址链接到 HTTP 网址，不发送<code>Referer</code>字段，其他情况只发送源信息。</p>
+</li>
+<li>
+<p>origin-when-cross-origin</p>
+<p>同源时，发送完整的<code>Referer</code>字段，跨域时发送源信息。</p>
+</li>
+<li>
+<p>strict-origin-when-cross-origin</p>
+<p>同源时，发送完整的<code>Referer</code>字段；跨域时，如果 HTTPS 网址链接到 HTTP 网址，不发送<code>Referer</code>字段，否则发送源信息。</p>
+</li>
+<li>
+<p>unsafe-url</p>
+<p><code>Referer</code>字段包含源信息、路径和查询字符串，不包含锚点、用户名和密码。</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Referer Policy用法</p>
+<ul>
+<li>
+<p>HTTP头信息</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Referer-Polify: origin</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><code>&lt;meta&gt;</code>标签</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;referer&quot;</span> <span class="attr">content</span>=<span class="string">&quot;origin&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><code>refererpolicy</code>属性</p>
+<p><code>&lt;a&gt;</code>、<code>&lt;area&gt;</code>、<code>&lt;img&gt;</code>、<code>&lt;iframe&gt;</code>和<code>&lt;link&gt;</code>标签，可以设置<code>referrerpolicy</code> 属性</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;xxx&quot;</span> <span class="attr">refererpolicy</span>=<span class="string">&quot;origin&quot;</span> <span class="attr">target</span>=<span class="string">&quot;_blank&quot;</span>&gt;</span>xxx<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h2><span id="xss">XSS</span></h2>
+<h2><span id="ssrf">SSRF</span></h2>
+<h3><span id="定义">定义</span></h3>
+<p><code>SSRF</code>，服务端请求伪造（<code>Server-side Request Forge</code>）的缩写。产生的原因是服务端提供了从其他服务器获取数据的功能，但没有对地址和协议等做过滤与限制。常见的一个场景就是：服务器通过用户输入的 URL 来获取图片。这个功能如果被恶意使用，可以利用存在缺陷的 Web 应用作为跳板来攻击远程和本地的服务器。</p>
+<h3><span id="分类">分类</span></h3>
+<p>ssrf 主要分为：</p>
+<ol>
+<li>回显型 ssrf</li>
+<li>无回显型 ssrf</li>
+</ol>
+<p>​    有回显型的 ssrf 就是会将访问到的信息返回给攻击者，而无回显的 ssrf 则不会，但是可以通过带外通道（比如 dnslog）或者 访问开放/未开放的端口导致的延时来判断。</p>
+<h3><span id="利用方式">利用方式</span></h3>
+<h4><span id="伪协议-gopher">伪协议 - gopher://</span></h4>
+<p><code>gopher</code>协议是一个在http 协议诞生前用来访问Internet 资源的协议可以理解为http 协议的前身或简化版，虽然很古老但现在很多库还支持gopher 协议而且<code>gopher</code> 协议功能很强大。也被称为「万金油」。</p>
+<p>它可以实现多个数据包整合发送，然后<code>gopher</code>服务器将多个数据包捆绑着发送到客户端，这就是它的菜单响应。比如使用一条<code>gopher </code>协议的<code>curl </code>命令就能操作<code>mysql 数据库</code>或完成对<code>redis</code> 的攻击等等。</p>
+<p><code>gopher</code> 协议使用<code>tcp</code> 可靠连接。</p>
+<p><strong>协议格式</strong>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gopher:&#x2F;&#x2F;&lt;host&gt;:&lt;port&gt;&#x2F;&lt;gopher-path&gt;</span><br></pre></td></tr></table></figure>
+<p>默认端口<code>70</code></p>
+<p>如果发起<code>post</code>请求，回车换行需要使用<code>%0d%0a</code>，如果多个参数，参数之间的<code>&amp;</code>也需要进行<code>URL编码</code></p>
+<p><strong>gopher的使用限制</strong>:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">语言</th>
+<th style="text-align:center">限制</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">php</td>
+<td style="text-align:center">–write-curlwrappers 且 php 版本至少为 5.3</td>
+</tr>
+<tr>
+<td style="text-align:center">Java</td>
+<td style="text-align:center">&lt; jdk1.7</td>
+</tr>
+<tr>
+<td style="text-align:center">curl</td>
+<td style="text-align:center">低版本不支持</td>
+</tr>
+<tr>
+<td style="text-align:center">perl</td>
+<td style="text-align:center">支持</td>
+</tr>
+<tr>
+<td style="text-align:center"><a target="_blank" rel="noopener" href="http://asp.net">asp.net</a></td>
+<td style="text-align:center">&lt;版本3</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>
+<p>gopher发送get请求</p>
+<p>本地使用<code>nc</code>测试：两个终端，见图：</p>
+<p><img src="/img/image-20210529144759385.png" alt="image-20210529144759385"></p>
+<p>可以发现，第一个<code>s</code>是不会发送过去的，这是<code>gopher</code>协议的特性，只需要在使用gopher协议时在url后加入一个字符（该字符可随意写）即可。</p>
+</li>
+<li>
+<p>gopher发送post请求</p>
+</li>
+</ul>
+<p><strong>需要注意：</strong></p>
+<ol>
+<li>gopher 协议的默认端口为 <code>70</code></li>
+<li>分隔符后面的 TCP/IP 数据就是发出去的数据，数据部分如果有特殊字符必须要进行 url 编码，这样 gopher 协议才能正确解析</li>
+<li>大部分 PHP 并不会开启 fopen 的 gopher wrapper</li>
+<li>PHP file_get_contents 的 gopher 协议不能 URLencode</li>
+<li>PHP file_get_contents 的 gopher 协议的 302 跳转有 bug，导致利用失败</li>
+<li>PHP 的 curl 默认不跟随 302 跳转</li>
+<li>curl/libcurl v7.43 上 gopher 协议存在 <code>%00</code> 截断，v7.49 可用</li>
+</ol>
+<p><strong>利用案例</strong>：</p>
+<p>可见<code>ssrf + redis</code>利用方式</p>
+<h4><span id="伪协议-dict">伪协议 - dict://</span></h4>
+<p>dict协议指词典网络协议，允许客户端在使用过程中访问更多字典。</p>
+<p>默认端口<code>2628</code></p>
+<p><strong>协议格式</strong>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dict:&#x2F;&#x2F;serverip:port&#x2F;命令:参数</span><br></pre></td></tr></table></figure>
+<p><strong>dict特性</strong>：</p>
+<ul>
+<li>向服务器的端口请求为「命令:参数」，并在末尾自动补上<code>\r\n</code>，方便漏洞利用</li>
+<li>通过<code>dict</code>协议，指令需要一条一条执行，而<code>gopher</code>协议执行一条命令即可</li>
+</ul>
+<p><strong>利用案例</strong>：</p>
+<p>可见<code>ssrf + redis</code>利用方式</p>
+<h4><span id="伪协议-file">伪协议 - file://</span></h4>
+<p><code>file</code>协议主要用于访问本地计算机中的文件。格式为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">file:&#x2F;&#x2F;文件路径</span><br></pre></td></tr></table></figure>
+<p><strong>file 和 http协议的区别？</strong></p>
+<ul>
+<li>file协议主要用于读取服务器本地文件，访问的是<code>本地的静态资源</code></li>
+<li>http是访问本地的html文件，相当于把本机当作http服务器，通过http访问服务器，服务器再去访问本地资源。简单来说<code>file只能静态读取</code>，http可以动态解析</li>
+<li>http服务器可以开放端口，让他人通过http访问服务器资源，但file不可以</li>
+<li>file对应的类似http的协议是ftp协议（文件传输协议）</li>
+<li>file不能跨域</li>
+</ul>
+<h4><span id="伪协议-ldap">伪协议 - ldap://</span></h4>
+<h4><span id="伪协议-data">伪协议 - data://</span></h4>
+<h4><span id="伪协议-rmi">伪协议 - rmi://</span></h4>
+<h3><span id="常见绕过技巧">常见绕过技巧</span></h3>
+<ol>
+<li>利用伪协议</li>
+<li>添加端口可能绕过匹配正则：<code>http://127.0.0.1/</code> 改为 <code>http://127.0.0.1:80/</code></li>
+<li>127.0.0.1 与 localhost 在大部分情况下都是等价的</li>
+<li>利用 IPv6：<code>http://[::]:80/</code> 相当于 <code>http://127.0.0.1</code></li>
+<li>利用 <code>@</code> 可能绕过域名限定的正则：<code>http://example.com@127.0.0.1</code> 相当于 <code>http://127.0.0.1</code></li>
+<li>利用进制：以 <code>127.0.0.1</code> 为例，首先，ip 可以没 <code>.</code>，比如 <code>2130706433</code>（十进制），<code>0x7F000001</code>（十六进制）；也可以有 <code>.</code>，比如 <code>0x7F.0x000.0x001</code>（十六进制）、<code>0177.0000.0001</code>（八进制），甚至可以混用，比如 <code>0x7F.000.0x001</code>（十六进制 加 十进制）；还可以合并，<code>127.0.0.1 == 127.0.1 == 127.1</code>、<code>127.3.2.1 == 127.3.513 == 127.3.513 == 127.197121</code>，注意这个合并注意只能从前到后合并，具体的计算方式，可以按照 . 分割，分别先转为 8 位二进制，然后从左到右每段直接拼在一起，最后再转为十进制或者十六进制即可，有一个比较特殊的是 <code>0</code>，<code>0.0.0.0 == 0.0.0 == 0.0 == 0</code>，即目标服务器监听了 <code>0.0.0.0</code> 的服务都可以用此方法访问到。以上这几种方式可以随意组合搭配，而且其实各个进制的补 0 可以填很多个：<code>127.0.0000000000000000000000000000000000.1</code>。</li>
+<li>利用跳转：比如，利用短链，<code>http://dlj.bz/kA47FD</code> 相当于 <code>http://127.0.0.1</code>，本质上是利用 301 跳转，所以完全可以自己打一个 301 跳转，想怎么跳就怎么跳，别忘记同时还可以转换协议：<code>Location: file:///etc/passwd</code>。状态码可以是 301、302、307</li>
+<li>利用域名 A 记录：<a target="_blank" rel="noopener" href="http://localhost.tr0y.wang/">http://localhost.tr0y.wang/</a>,  在域名上设置 A 记录，指向 <code>127.0.0.1</code>。如果你实在懒，可以用 <code>xip.io</code>/<code>xip.name</code>，它的子域名前缀就是解析的 ip 地址，比如 <code>127.0.0.1.xip.io</code> 的 A 记录就是 127.0.0.1</li>
+<li>利用 IDN，<code>ⓔⓧⓐⓜⓟⓛⓔ.ⓒⓞⓜ</code>  等于 <code>example.com</code>，<code>127。0。0。1</code> 相当于 <code>127.0.0.1</code></li>
+<li>CRLF 头注入：比较经典的就是 Python 的 CVE，由于允许 <code>\r\n</code> 的存在，大大提升了通过 http:// 协议来利用的 ssrf 的杀伤力</li>
+<li>DNS 重绑定攻击：可见：<a target="_blank" rel="noopener" href="https://www.tr0y.wang/2020/11/02/DNS-3-attack-by-dns/#DNS-%E9%87%8D%E7%BB%91%E5%AE%9A%E6%94%BB%E5%87%BB">https://www.tr0y.wang/2020/11/02/DNS-3-attack-by-dns/#DNS-重绑定攻击</a><br>
+这个和「域名A记录」很像，但是DNS重绑定的优势是，有些 SSRF 防御策略的第一步是先提取域名，然后解析一下看 ip 是不是内网 ip，但是到最后发起请求的时候依旧用的是域名，第一次不是内网，再次发起请求的时候，就是内网了。可以绕过不规范的SSRF防御策略。</li>
+</ol>
+<h3><span id="防御方式">防御方式</span></h3>
+<p><strong>明确此类功能的流程</strong>：</p>
+<ol>
+<li>提取 URL 的域名</li>
+<li>解析 Host 的 ip</li>
+<li>发出请求</li>
+<li>如果有跳转，取出 Location URL，回到第 1 步；否则继续下一步</li>
+<li>发出最终的请求，实现业务逻辑</li>
+</ol>
+<p><strong>需要注意</strong>：</p>
+<ol>
+<li>过滤返回的信息/统一错误信息：将有回显变成无回显，提升利用难度（比如 file:// 就直接废掉了）</li>
+<li>限制请求的 ip 和端口：一般的业务禁掉私有 ip 完全可行；限制端口可有效降低攻击面</li>
+<li>去除 URL 中的特殊字符：防止因为 url 解析模块造成的问题，往往是 host 提取解析结果存在问题（强烈建议阅读 资料 1）</li>
+<li>只允许 http 协议，必要时强制使用 https 协议，可以很大程度提升攻击难度，因为 SSL/TLS 握手过程无法完成（骚操作请参考 资料 2）</li>
+<li>解析/跳转（没必要就别跟随跳转了）后一定要进行检查：防止利用各种形式的 ip、跳转绕过</li>
+<li>完善正则表达式：这个没啥通用的技巧，根据具体的业务需求定，需要经过完善测试（限制 @ 的使用、防止用子域名前缀绕过等等）</li>
+<li>最后真正发起请求去获取资源的时候，可以把域名替换成第之前就已经解析的结果，这样来避免重复解析带来的 DNS 重绑定攻击问题。</li>
+<li>可以考虑建立一个发起请求的代理集群。外网代理集群专门用于业务对外网发起请求；另一个代理集群专门用于业务对内网发起请求。然后在网络层面上保证外网代理集群无法与内网直接互通。</li>
+</ol>
+<p><strong>资料</strong>：</p>
+<ol>
+<li>SSRF利用新纪元：</li>
+</ol>
+<ul>
+<li>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.blackhat.com/docs/us-17/thursday/us-17-Tsai-A-New-Era-Of-SSRF-Exploiting-URL-Parser-In-Trending-Programming-Languages.pdf">https://www.blackhat.com/docs/us-17/thursday/us-17-Tsai-A-New-Era-Of-SSRF-Exploiting-URL-Parser-In-Trending-Programming-Languages.pdf</a></li>
+</ul>
+</li>
+</ul>
+<ol start="2">
+<li>SSRF 遇到 TLS 的利用方式：</li>
+</ol>
+<ul>
+<li>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://i.blackhat.com/USA-20/Wednesday/us-20-Maddux-When-TLS-Hacks-You.pdf">https://i.blackhat.com/USA-20/Wednesday/us-20-Maddux-When-TLS-Hacks-You.pdf</a></li>
+</ul>
+</li>
+</ul>
+<ol start="3">
+<li>猪猪侠在乌云大会上关于 ssrf 的分享：</li>
+</ol>
+<ul>
+<li>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://docs.ioin.in/writeup/fuzz.wuyun.org/_src_build_your_ssrf_exp_autowork_pdf/index.pdf">https://docs.ioin.in/writeup/fuzz.wuyun.org/_src_build_your_ssrf_exp_autowork_pdf/index.pdf</a></li>
+</ul>
+</li>
+</ul>
+
+
+        <hr>
+        <!-- Pager -->
+        <ul class="pager">
+          
+          <li class="previous">
+            <a href="/cn/PHP安全/" data-toggle="tooltip" data-placement="top" title="PHP安全">&larr; Previous Post</a>
+          </li>
+          
+          
+          <li class="next">
+            <a href="/cn/redis漏洞/" data-toggle="tooltip" data-placement="top" title="redis漏洞">Next Post &rarr;</a>
+          </li>
+          
+        </ul>
+
+        
+        <!-- tip start -->
+        <!-- tip -->
+<!-- tip start -->
+<div class="tip">
+  <p>
+    
+      如果您喜欢此博客或发现它对您有用，则欢迎对此发表评论。 也欢迎您共享此博客，以便更多人可以参与。 如果博客中使用的图像侵犯了您的版权，请与作者联系以将其删除。 谢谢 ！
+    
+  </p>
+</div>
+<!-- tip end -->
+
+        <!-- tip end -->
+        
+
+        
+        <!-- Sharing Srtart -->
+        <!-- Social Social Share Post -->
+<!-- Docs:https://github.com/overtrue/share.js -->
+
+<div class="social-share" data-initialized="true" data-disabled="tencent ,douban ,qzone ,linkedin ,facebook ,google ,diandian" data-wechat-qrcode-helper="" align="center">
+  <ul class="list-inline text-center social-share-ul">
+    <li class="social-share-li">
+      <a target="_blank" class="social-share-icon icon-twitter">
+        <i class="fa fa-twitter fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li class="social-share-li">
+      <a class="social-share-icon icon-wechat">
+        <i class="fa fa-weixin fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li class="social-share-li">
+      <a target="_blank" class="social-share-icon icon-weibo">
+        <i class="fa fa-weibo fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li class="social-share-li">
+      <a target="_blank" class="social-share-icon icon-qq">
+        <i class="fa fa-qq fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li class="social-share-li">
+      <a target="_blank" class="social-share-icon" href="mailto:?subject=OWASP TOP10&body=Hi,I found this website and thought you might like it https://ro0t.top/cn/owasp_top_10/">
+        <i class="fa fa-envelope fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+<!-- css & js -->
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css"> -->
+<script defer="defer" async="true" src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+
+        <!-- Sharing End -->
+        
+        <hr>
+
+        <!-- comments start -->
+        <!-- 1. gitalk comment -->
+
+  <!-- gitalk start -->
+  <!-- Docs:https://github.com/gitalk/gitalk/blob/master/readme-cn.md -->
+
+  <div id="gitalk-container"></div>
+
+  
+    <!-- <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.js"></script> -->
+    <script src="/js/comment/gitalk.js"></script>
+  
+
+  <script>
+    var gitalk = new Gitalk({
+      clientID: '',
+      clientSecret: '',
+      repo: '',
+      owner: '',
+      admin: '',
+      id: 'Tue Jun 01 2021 00:00:00 GMT+0800', // Ensure uniqueness and length less than 50
+      distractionFreeMode: false, // Facebook-like distraction free mode
+      perPage: 10,
+      pagerDirection: 'last',
+      createIssueManually: false,
+      language: 'zh-CN',
+      proxy: 'https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token'
+    });
+    gitalk.render('gitalk-container');
+
+    var gtFolded = () => {
+      setTimeout(function () {
+        let markdownBody = document.getElementsByClassName("markdown-body");
+        let list = Array.from(markdownBody);
+        list.forEach(item => {
+          if (item.clientHeight > 250) {
+            item.classList.add('gt-comment-body-folded');
+            item.style.maxHeight = '250px';
+            item.title = 'Click to Expand';
+            item.onclick = function () {
+              item.classList.remove('gt-comment-body-folded');
+              item.style.maxHeight = '';
+              item.title = '';
+              item.onclick = null;
+            };
+          }
+        })
+      }, 800);
+    }
+  </script>
+
+  <!-- gitalk end -->
+
+
+<!-- 2. gitment comment -->
+
+
+<!-- 3. disqus comment -->
+
+
+        <!-- comments end -->
+        <hr>
+
+      </div>
+
+      <!-- Catalog: Tabe of Content -->
+      <!-- Table of Contents -->
+
+
+
+      <!-- Sidebar Container -->
+      <div class="
+                col-lg-8 col-lg-offset-1
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+        <!-- Featured Tags -->
+        
+        <section>
+          <!-- no hr -->
+          <h5>
+            <a href="/tags/">特色标签</a>
+          </h5>
+          <div class="tags">
+            
+            <a class="tag" href="/tags/#Web安全" title="Web安全">Web安全</a>
+            
+          </div>
+        </section>
+        
+
+        <!-- Friends Blog -->
+        
+        <hr>
+        <h5>链友</h5>
+        <ul class="list-inline">
+
+          
+          <li>
+            <a href="https://www.tr0y.wang/" target="_blank">Tr0y</a>
+          </li>
+          
+          <li>
+            <a href="https://hexo.io/" target="_blank">Hexo</a>
+          </li>
+          
+        </ul>
+        
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+<!-- anchorjs start -->
+<!-- async load function -->
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script type="text/javascript">
+  // async load function
+  function async (u, c) {
+    var d = document,
+      t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) {
+      o.addEventListener('load', function(e) {
+        c(null, e);
+      }, false);
+    }
+    s.parentNode.insertBefore(o, s);
+  };
+</script>
+<script type="text/javascript">
+  //anchor-js, Doc:http://bryanbraun.github.io/anchorjs/
+  async ("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js", function() {
+    anchors.options = {
+      visible: 'hover',
+      placement: 'left',
+      // icon: 'ℬ'
+      icon: '❡'
+    };
+    anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+  });
+</script>
+<style>
+  /* place left on bigger screen */
+  @media all and (min-width: 800px) {
+    .anchorjs-link {
+      position: absolute;
+      left: -0.75em;
+      font-size: 1.1em;
+      margin-top: -0.1em;
+    }
+  }
+</style>
+
+<!-- anchorjs end -->
+
+
+
+		<!-- Footer (contains ThemeColor、viewer) -->
+		<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center">
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+            <li>
+              <a target="_blank" href="http://weibo.com/2752859095">
+                <span class="fa-stack fa-lg">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+          
+
+        </ul>
+        <p class="copyright text-muted">
+          Copyright &copy;
+          ro0t
+          2021
+          <br>
+          <a target="_blank" rel="noopener" href="https://beian.miit.gov.cn">浙ICP备2021021371号</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<a id="rocket" href="#top" class=""></a>
+
+
+  <!-- jQuery -->
+  <script type="text/javascript" src="/js/jquery.min.js"></script>
+  <!-- Bootstrap Core JavaScript -->
+  <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+  <!-- Custom Theme JavaScript -->
+  <script type="text/javascript" src="/js/hux-blog.min.js"></script>
+  <!-- catalog -->
+  <script async="true" type="text/javascript" src="/js/catalog.js"></script>
+  <!-- totop(rocket) -->
+  <script async="true" type="text/javascript" src="/js/totop.js"></script>
+
+  
+
+  
+    <!-- Scroll start -->
+    <script async="async" type="text/javascript" src="/js/scroll.js"></script>
+    <!-- Scroll end -->
+  
+
+  
+    <!-- LangSelect start -->
+    <script type="text/javascript" src="/js/langselect.js"></script>
+    <!-- LangSelect end -->
+  
+
+  
+    <!-- Mouseclick -->
+    <script type="text/javascript" src="/js/mouseclick.js" content='富强,民主,文明,和谐,自由,平等,公正,法治,爱国,敬业,诚信,友善' color='#9933CC,#339933,#66CCCC,#FF99CC,#CCCCFF,#6666CC,#663399,#66CC99,#FF0033,#9933CC,#339933,#66CCCC'></script>
+  
+
+  
+    <!-- ribbon -->
+    <script type="text/javascript" src="/js/ribbonDynamic.js"></script>
+  
+
+  
+
+
+
+
+
+
+  <!-- viewer start -->
+  <!-- viewer start (Picture preview) -->
+  
+    <script async="async" type="text/javascript" src="/js/viewer/viewer.min.js"></script>
+    <script async="async" type="text/javascript" src="/js/viewer/pic-viewer.js"></script>
+  
+
+  <!-- viewer end -->
+
+
+<script>
+  // async load function
+  function async (u, c) {
+    var d = document,
+      t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) {
+      o.addEventListener('load', function (e) {
+        c(null, e);
+      }, false);
+    }
+    s.parentNode.insertBefore(o, s);
+  }
+
+  // fastClick.js
+  async ("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function () {
+    var $nav = document.querySelector("nav");
+    if ($nav)
+      FastClick.attach($nav);
+    }
+  )
+</script>
+
+<!-- Because of the native support for backtick-style fenced code blocks right within the Markdown is landed in Github Pages, From V1.6, There is no need for Highlight.js, so Huxblog drops it officially. -
+https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0 - https://help.github.com/articles/creating-and-highlighting-code-blocks/ -->
+<!-- <script> async ("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function () { hljs.initHighlightingOnLoad(); }) </script> <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet"> -->
+
+<!-- jquery.tagcloud.js -->
+<!-- <script> // only load tagcloud.js in tag.html if ($('#tag_cloud').length !== 0) { async ("https://ro0t.top/js/jquery.tagcloud.js", function () { $.fn.tagcloud.defaults = { // size: { start: 1, end: 1, unit: 'em' }, color: {
+start: '#bbbbee', end: '#0085a1' } }; $('#tag_cloud a').tagcloud(); }) } </script> -->
+
+
+		<!-- Search -->
+		
+		<div class="popup search-popup local-search-popup">
+  <span class="popup-btn-close">
+    ESC
+  </span>
+  <div class="container">
+    <div class="row">
+      <!-- <div class="col-md-9 col-md-offset-1"> -->
+      <div class="col-lg-9 col-lg-offset-1 col-md-10 col-md-offset-1 local-search-content">
+
+        <div class="local-search-header clearfix">
+
+          <div class="local-search-input-wrapper">
+            <span class="search-icon">
+              <i class="fa fa-search fa-lg" style="margin: 25px 10px 25px 20px;"></i>
+            </span>
+            <input autocomplete="off" placeholder="搜索..." type="text" id="local-search-input">
+          </div>
+        </div>
+        <div id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  
+    <script src="/js/ziploader.js"></script>
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.json";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    // monitor main search box;
+    var onPopupClose = function (e) {
+      $('.popup').fadeOut(300);
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $('.popup').fadeIn(300);
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+    // get search zip version
+    $.get('/searchVersion.json?t=' + (+new Date()), function (res) {
+      if (localStorage.getItem('searchVersion') !== res) {
+        localStorage.setItem('searchVersion', res);
+        initSearchJson();
+      }
+    });
+
+    function initSearchJson() {
+      initLoad(['/search.flv'], {
+        loadOptions: {
+          success: function (obj) {
+            localStorage.setItem('searchJson', obj['search.json'])
+          },
+          error: function (e) {
+            return console.log(e)
+          }
+        },
+        returnOptions: {
+          'json': TYPE_TEXT
+        },
+        mimeOptions: {
+          'json': 'application/json'
+        }
+      })
+    }
+    // search function;
+    var searchFunc = function (search_id, content_id) {
+      'use strict';
+      isfetched = true;
+      var datas = JSON.parse(localStorage.getItem('searchJson'));
+      // console.log(search_id)
+      var input = document.getElementById(search_id);
+      var resultContent = document.getElementById(content_id);
+      var inputEventFunction = function () {
+        var searchText = input.value.trim().toLowerCase();
+        var keywords = searchText.split(/[\s\-]+/);
+        if (keywords.length > 1) {
+          keywords.push(searchText);
+        }
+        var resultItems = [];
+        if (searchText.length > 0) {
+          // perform local searching
+          datas.forEach(function (data) {
+            var isMatch = false;
+            var hitCount = 0;
+            var searchTextCount = 0;
+            var title = data.title
+              ? data.title.trim()
+              : '';
+            var titleInLowerCase = title.toLowerCase();
+            var content = data.content
+              ? data.content.trim().replace(/<[^>]+>/g, "")
+              : '';
+            var contentInLowerCase = content.toLowerCase();
+            var articleUrl = decodeURIComponent(data.url);
+
+            var date = data.date;
+            var dateTime = date.replace(/T/, " ").replace(/.000Z/, "");
+            var imgUrl = data.header_img;
+            
+
+
+            var indexOfTitle = [];
+            var indexOfContent = [];
+            // only match articles with not empty titles
+            keywords.forEach(function (keyword) {
+              function getIndexByWord(word, text, caseSensitive) {
+                var wordLen = word.length;
+                if (wordLen === 0) {
+                  return [];
+                }
+                var startPosition = 0,
+                  position = [],
+                  index = [];
+                if (!caseSensitive) {
+                  text = text.toLowerCase();
+                  word = word.toLowerCase();
+                }
+                while ((position = text.indexOf(word, startPosition)) > -1) {
+                  index.push({position: position, word: word});
+                  startPosition = position + wordLen;
+                }
+                return index;
+              }
+              indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+              indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+            });
+            if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+              isMatch = true;
+              hitCount = indexOfTitle.length + indexOfContent.length;
+            }
+            // show search results
+            if (isMatch) {
+              // sort index by position of keyword
+              [indexOfTitle, indexOfContent].forEach(function (index) {
+                index.sort(function (itemLeft, itemRight) {
+                  if (itemRight.position !== itemLeft.position) {
+                    return itemRight.position - itemLeft.position;
+                  } else {
+                    return itemLeft.word.length - itemRight.word.length;
+                  }
+                });
+              });
+              // merge hits into slices
+              function mergeIntoSlice(text, start, end, index) {
+                var item = index[index.length - 1];
+                var position = item.position;
+                var word = item.word;
+                var hits = [];
+                var searchTextCountInSlice = 0;
+                while (position + word.length <= end && index.length != 0) {
+                  if (word === searchText) {
+                    searchTextCountInSlice++;
+                  }
+                  hits.push({position: position, length: word.length});
+                  var wordEnd = position + word.length;
+                  // move to next position of hit
+                  index.pop();
+                  while (index.length != 0) {
+                    item = index[index.length - 1];
+                    position = item.position;
+                    word = item.word;
+                    if (wordEnd > position) {
+                      index.pop();
+                    } else {
+                      break;
+                    }
+                  }
+                }
+                searchTextCount += searchTextCountInSlice;
+                return {hits: hits, start: start, end: end, searchTextCount: searchTextCountInSlice};
+              }
+              var slicesOfTitle = [];
+              if (indexOfTitle.length != 0) {
+                slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+              }
+              var slicesOfContent = [];
+              while (indexOfContent.length != 0) {
+                var item = indexOfContent[indexOfContent.length - 1];
+                var position = item.position;
+                var word = item.word;
+                // cut out 100 characters
+                var start = position - 20;
+                var end = position + 80;
+                if (start < 0) {
+                  start = 0;
+                }
+                if (end < position + word.length) {
+                  end = position + word.length;
+                }
+                if (end > content.length) {
+                  end = content.length;
+                }
+                slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+              }
+              // sort slices in content by search text's count and hits' count
+              slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                  return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                  return sliceRight.hits.length - sliceLeft.hits.length;
+                } else {
+                  return sliceLeft.start - sliceRight.start;
+                }
+              });
+              // select top N slices in content
+              var upperBound = parseInt('1');
+              if (upperBound >= 0) {
+                slicesOfContent = slicesOfContent.slice(0, upperBound);
+              }
+              // highlight title and content
+              function highlightKeyword(text, slice) {
+                var result = '';
+                var prevEnd = slice.start;
+                slice.hits.forEach(function (hit) {
+                  result += text.substring(prevEnd, hit.position);
+                  var end = hit.position + hit.length;
+                  result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                  prevEnd = end;
+                });
+                result += text.substring(prevEnd, slice.end);
+                return result;
+              }
+              var resultItem = '';
+
+              // if (slicesOfTitle.length != 0) {   resultItem += "<li><a target='_blank' href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>"; } else {   resultItem += "<li><a target='_blank' href='" +
+              // articleUrl + "' class='search-result-title'>" + title + "</a>"; } slicesOfContent.forEach(function (slice) {   resultItem += "<a target='_blank' href='" + articleUrl + "'><p class=\"search-result\">" + highlightKeyword(content, slice) +
+              // "...</p></a>"; }); resultItem += "</li>";
+
+              if (slicesOfTitle.length != 0) {
+                resultItem += "<a target='_blank' href='" + articleUrl + "' class='search-result'><div class='search-result-left'><div class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</div><time class='search-result-date'>" + dateTime + "</time>";
+              } else {
+                resultItem += "<a target='_blank' href='" + articleUrl + "' class='search-result'><div class='search-result-left'><div class='search-result-title'>" + title + "</div><time class='search-result-date'>" + dateTime + "</time>";
+              }
+              slicesOfContent.forEach(function (slice) {
+                resultItem += "<p class=\"search-result-content\">" + highlightKeyword(content, slice) + "...</p>";
+              });
+              resultItem += "</div><div class='search-result-right'><img class='media-image' src='" + imgUrl + "' width='64px' height='48px'></img></div></a>";
+
+              resultItems.push({item: resultItem, searchTextCount: searchTextCount, hitCount: hitCount, id: resultItems.length});
+            }
+          })
+        };
+
+        if (keywords.length === 1 && keywords[0] === "") {
+          resultContent.innerHTML = '<div id="no-result"></div>'
+        } else if (resultItems.length === 0) {
+          resultContent.innerHTML = '<div id="no-result"></div>'
+        } else {
+          resultItems.sort(function (resultLeft, resultRight) {
+            if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+              return resultRight.searchTextCount - resultLeft.searchTextCount;
+            } else if (resultLeft.hitCount !== resultRight.hitCount) {
+              return resultRight.hitCount - resultLeft.hitCount;
+            } else {
+              return resultRight.id - resultLeft.id;
+            }
+          });
+          var searchResultList = '<div class=\"search-result-list\">';
+          resultItems.forEach(function (result) {
+            searchResultList += result.item;
+          })
+          searchResultList += "</div>";
+          resultContent.innerHTML = searchResultList;
+        }
+      }
+      if ('auto' === 'auto') {
+        input.addEventListener('input', inputEventFunction);
+      } else {
+        $('.search-icon').click(inputEventFunction);
+        input.addEventListener('keypress', function (event) {
+          if (event.keyCode === 13) {
+            inputEventFunction();
+          }
+        });
+      }
+      // remove loading animation
+      $('body').css('overflow', '');
+      proceedsearch();
+    }
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function (e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc('local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function (e) {
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 && $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+
+    document.addEventListener('mouseup', (e) => {
+      var _con = document.querySelector(".local-search-content");
+      if (_con) {
+        if (!_con.contains(e.target)) {
+          onPopupClose();
+        }
+      }
+    });
+  </script>
+
+
+		
+	<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
